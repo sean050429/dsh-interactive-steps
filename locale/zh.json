@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "交互式步骤卡片",
+    "description": "注册一个 interactive_steps 工具,它的卡片是渲染在对话流内部的、可点击翻页的步骤查看器。"
+  }
+}

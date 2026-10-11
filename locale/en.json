@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Interactive Steps",
+    "description": "An interactive_steps Tool whose card is a clickable step-by-step viewer rendered inside the conversation flow."
+  }
+}

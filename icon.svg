@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Interactive steps">
+  <circle cx="5.5" cy="6" r="2.1" fill="currentColor" stroke="none"/>
+  <circle cx="5.5" cy="12" r="2.1" fill="currentColor" stroke="none" opacity="0.55"/>
+  <circle cx="5.5" cy="18" r="2.1" fill="currentColor" stroke="none" opacity="0.28"/>
+  <path d="M5.5 6h1.5"/>
+  <path d="M5.5 12h1.5"/>
+  <path d="M5.5 18h1.5"/>
+  <path d="M11 6h8.5"/>
+  <path d="M11 12h8.5"/>
+  <path d="M11 18h8.5"/>
+</svg>

@@ -1,0 +1,14 @@
+# Interactive Steps — a conversation-flow stepper card.
+#
+# This bundle contributes two halves:
+#   * the Host row below registers the `interactive_steps` Tool, whose arguments
+#     carry the walkthrough the model wants to present;
+#   * `client.js` registers the matching `tool.call.toolview` view under the
+#     `interactive_steps` key, so that Tool's card renders the clickable stepper
+#     directly inside the conversation flow.
+#
+# Mounted at the profile root: `ctx.tools.register` then lands in the global tool
+# layer, which every agent scope inherits (scoped registrations only shadow it).
+- insert:
+    - id: interactive-steps
+      name: '@local/dsh-interactive-steps'
