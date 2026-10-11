@@ -1,4 +1,6 @@
-# @local/dsh-interactive-steps
+# dsh-interactive-steps
+
+English | [中文](README.zh.md)
 
 An interactive step card that renders **inside the conversation flow**.
 
@@ -6,6 +8,19 @@ The bundle registers one Tool, `interactive_steps`, and one Client view for that
 Tool's call card. When the Tool is called, its card is not a generic row: it is a
 clickable stepper. The user switches steps inside the transcript — no file to
 open, no extra Tool call.
+
+## Install
+
+Author the package into a workspace directory, then install it into the current
+profile with the Harness Plugin Manager:
+
+```
+plugin_manager({ action: "install_bundle", target: "<absolute path to this package>" })
+```
+
+Installation registers the bundle in the profile and applies it immediately.
+**Host changes need an app restart** to take effect; `client.js` changes are
+picked up on reload.
 
 ## How it works
 
@@ -42,15 +57,16 @@ There is deliberately no `Config` export: the Loader validates a row's `config`
 only against a native schemastery schema, and `@deepseek-ai/schemastery` is not
 resolvable from this workspace bundle, so importing it would break activation.
 
-**Host changes need an app restart** to take effect; `client.js` changes are
-picked up on reload.
-
 ## Visibility
 
 The card renders inside the Tool-call row, and Chat folds eligible completed
 Turns' process rows into a collapsed group by default. Set
 **Settings → General → 工作步骤展示** to **完全展开** (Verbose) to see process rows
 directly; under 简洁 / 标准 / 详细 the card is still there, but folded.
+
+If the feature looks like it is missing, this is the first thing to check: the
+"轨迹" (Trajectory) view lists every Tool call flat, so a call that appears there
+but not in the transcript is folded rather than absent.
 
 ## Tool shape
 
@@ -69,9 +85,21 @@ Only `--dsw-alias-*` theme tokens are referenced (`brand-primary`, `label-*`,
 `bg-layer-*`, `border-l*`, `state-success-primary`, `state-warn-primary`), so the
 card follows light and dark themes and never hard-codes a palette.
 
+The card is wrapped in an error boundary that degrades to a plain-text step list
+rather than collapsing to a blank row, because a throwing slot entry otherwise
+disappears silently.
+
 ## Verification
 
 Behaviour verified without a browser by executing the real exported component
 against a hook-faithful React stub: mount, rail clicks, next/previous, both
 boundaries, the settled card, malformed/empty arguments, and keydown-listener
 disposal. Live registration is confirmed through `cordis_inspect_query`.
+
+## Repository
+
+https://github.com/sean050429/dsh-interactive-steps
+
+## License
+
+[MIT](LICENSE)
