@@ -13,6 +13,9 @@
     "url": "https://github.com/sean050429/dsh-interactive-steps/issues"
   },
   "type": "module",
+  "scripts": {
+    "test": "node --test test/*.test.js"
+  },
   "exports": {
     ".": "./index.js",
     "./client": "./client.js",

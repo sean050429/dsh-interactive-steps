@@ -174,12 +174,19 @@ export function normalizeSteps(args, maxSteps = 24) {
     if (candidate === null || typeof candidate !== 'object') continue
     const title = optionalText(candidate.title)
     if (title === undefined) continue
-    steps.push({
-      title,
-      detail: optionalText(candidate.detail),
-      code: optionalText(candidate.code),
-      note: optionalText(candidate.note)
-    })
+    // Optional fields must be *absent*, never present-and-undefined: the Host
+    // gates every Tool result through a lossless-JSON check that rejects
+    // nested `undefined` (JSON would silently drop the key). Emitting one
+    // surfaces as `tool ... returned invalid output: value is not lossless
+    // JSON` even though the Client already rendered the card.
+    const step = { title }
+    const detail = optionalText(candidate.detail)
+    const code = optionalText(candidate.code)
+    const note = optionalText(candidate.note)
+    if (detail !== undefined) step.detail = detail
+    if (code !== undefined) step.code = code
+    if (note !== undefined) step.note = note
+    steps.push(step)
   }
   return { title: rawTitle ?? 'Steps', steps }
 }
